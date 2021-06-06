@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="www.thymeleaf.org">
   <head>
     <meta charset="utf-8">
-    <title>Library</title>
+    <title>Library > Books</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" th:href="@{/css/library.css}">
@@ -10,40 +10,16 @@
   <body>
     <div class="container libraries-main-div library-main-div">
 		<div id="library-inner-main-div" class="row align-items-center">
-			<div class="col">
-				<div class="row library-card-row">
-					<div class="col library-card-col">
-						<a th:href="@{/projects/library/books/0}">
-							<div class="card">
-  								<img class="card-img-top" th:src="@{/images/projects/library/books.jpg}" alt="Book Library Image">
-  								<div class="card-body">
-    								<h2 class="card-title">books</h2>
-  								</div>
-							</div>
-						</a>
-					</div>
-					<div class="col library-card-col">
-						<a th:href="@{#}">
-						<div class="card">
-  							<img class="card-img-top" th:src="@{/images/projects/library/movies.jpg}" alt="Movie Library Image">
-  							<div class="card-body">
-    							<h2 class="card-title">movies</h2>
-  							</div>
-						</div>
-						</a>
-					</div>
-					<div class="col library-card-col">
-						<a th:href="@{#}">
-						<div class="card">
-  							<img class="card-img-top" th:src="@{/images/projects/library/music.jpg}" alt="Music Library Image">
-  							<div class="card-body">
-    							<h2 class="card-title">music</h2>
-  							</div>
-						</div>
-						</a>
-					</div>
+			<h1 class="text-center w-100">books</h1>
+			<hr>
+			<div th:if="${mOk}" th:text="${mOk}" class="alert alert-success w-100"></div>
+			<div class="row books-row">
+				<div th:each="b : ${books}" class="col-6 col-md-4 col-xl-3 books-col">
+					<img th:src="${b.image != null ? b.image : '/images/projects/library/books_default.jpg'}" class="img-fluid d-block mx-auto" th:title="${b.title} + ' Image'">
+					<p th:text="${b.title}" class="text-center">Title</p>
 				</div>
 			</div>
+			<p class="text-center w-100"><a th:href="@{/projects/library}">LIBRARY</a> | <a th:href="@{/projects/library/books/new}">ADD BOOK</a></p>
 		</div>
     </div>
     

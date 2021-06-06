@@ -13,7 +13,7 @@ public class BookGenre {
 	@Id
 	@GeneratedValue
 	private int id;
-	@Column(length = 20)
+	@Column(length = 30)
 	private String name;
 	@OneToMany(mappedBy = "genre")
 	private List<Book> books;

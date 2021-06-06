@@ -32,6 +32,7 @@ public class Movie {
 	private List<MovieGenre> genres;
 
 	public Movie() {
+		this.director = new MovieDirector();
 	}
 
 	public Movie(String title, String synopsis, MovieDirector director, Country country, int year, int runtime) {

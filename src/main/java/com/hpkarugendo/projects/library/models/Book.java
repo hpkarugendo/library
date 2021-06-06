@@ -13,7 +13,7 @@ public class Book {
 	private int id;
 	@Column(length = 35)
 	private String image;
-	@Column(length = 35)
+	@Column(length = 50)
 	private String title;
 	@ManyToOne
 	private BookAuthor author;
@@ -23,21 +23,17 @@ public class Book {
 	private int year;
 	@ManyToOne
 	private BookGenre genre;
-	@ManyToOne
-	private Country country;
 	
 	public Book() {
 	}
 
-	public Book(String title, BookAuthor author, int pages, String synopsis, int year, BookGenre genre,
-			Country country) {
+	public Book(String title, BookAuthor author, int pages, String synopsis, int year, BookGenre genre) {
 		this.title = title;
 		this.author = author;
 		this.pages = pages;
 		this.synopsis = synopsis;
 		this.year = year;
 		this.genre = genre;
-		this.country = country;
 	}
 
 	public int getId() {
@@ -104,18 +100,10 @@ public class Book {
 		this.genre = genre;
 	}
 
-	public Country getCountry() {
-		return country;
-	}
-
-	public void setCountry(Country country) {
-		this.country = country;
-	}
-
 	@Override
 	public String toString() {
 		return "Book [id=" + id + ", image=" + image + ", title=" + title + ", author=" + author.getName() + ", pages=" + pages
-				+ ", synopsis=" + synopsis + ", year=" + year + ", genre=" + genre.getName() + ", country=" + country.getName() + "]";
+				+ ", synopsis=" + synopsis + ", year=" + year + ", genre=" + genre.getName() + "]";
 	}
 	
 

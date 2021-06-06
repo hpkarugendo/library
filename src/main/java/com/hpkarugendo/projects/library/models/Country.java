@@ -13,12 +13,10 @@ public class Country {
 	@Id
 	@GeneratedValue
 	private int id;
-	@Column(length = 35)
+	@Column(length = 50)
 	private String name;
 	@Column(length = 2)
 	private String code;
-	@OneToMany(mappedBy = "country")
-	private List<Book> books;
 	@OneToMany(mappedBy = "country")
 	private List<BookAuthor> authors;
 	@OneToMany(mappedBy = "country")
@@ -60,14 +58,6 @@ public class Country {
 
 	public void setCode(String code) {
 		this.code = code;
-	}
-
-	public List<Book> getBooks() {
-		return books;
-	}
-
-	public void setBooks(List<Book> books) {
-		this.books = books;
 	}
 
 	public List<BookAuthor> getAuthors() {

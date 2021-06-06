@@ -1,0 +1,20 @@
+<div class="row">
+	<div class="col-6">
+		<img
+			th:src="${book.image != null ? book.image : '/images/projects/library/books_default.jpg'}"
+			class="img-fluid" th:title="${book.title} + ' Image'">
+	</div>
+	<div class="col-6">
+		<h2 th:text="${book.title}">Title</h2>
+		<p th:text="${book.author.name}">Author</p>
+		<p th:text="${book.genre.name}">Genre</p>
+		<p th:text="${book.year}">Year</p>
+		<p th:text="${book.pages} + ' Pages'">Length</p>
+	</div>
+	<div class="col-12">
+		<h3>Synopsis</h3>
+		<p
+			th:each="line : ${#strings.arraySplit(book.synopsis, T(org.apache.commons.lang3.StringUtils).LF)}"
+			th:text="${line}"></p>
+	</div>
+</div>
