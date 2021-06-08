@@ -14,9 +14,9 @@ public class Movie {
 	@Id
 	@GeneratedValue
 	private int id;
-	@Column(length = 35)
+	@Column(length = 100)
 	private String image;
-	@Column(length = 30)
+	@Column(length = 100)
 	private String title;
 	@Column(columnDefinition = "TEXT")
 	private String synopsis;

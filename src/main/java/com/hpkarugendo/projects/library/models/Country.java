@@ -13,7 +13,7 @@ public class Country {
 	@Id
 	@GeneratedValue
 	private int id;
-	@Column(length = 50)
+	@Column(length = 100)
 	private String name;
 	@Column(length = 2)
 	private String code;

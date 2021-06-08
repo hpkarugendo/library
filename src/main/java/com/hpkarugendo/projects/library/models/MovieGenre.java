@@ -16,7 +16,7 @@ public class MovieGenre {
 	@Id
 	@GeneratedValue
 	private int id;
-	@Column(length = 20)
+	@Column(length = 100)
 	private String name;
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "movie_genres", joinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "movie_genre_id", referencedColumnName = "id"))

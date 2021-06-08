@@ -14,7 +14,7 @@ public class Music {
 	@Id
 	@GeneratedValue
 	private int id;
-	@Column(length = 35)
+	@Column(length = 100)
 	private String title;
 	@ManyToMany(mappedBy = "songs")
 	private List<MusicArtist> artists;

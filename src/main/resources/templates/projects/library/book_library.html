@@ -9,17 +9,38 @@
   </head>
   <body>
     <div class="container libraries-main-div library-main-div">
-		<div id="library-inner-main-div" class="row align-items-center">
-			<h1 class="text-center w-100">books</h1>
-			<hr>
-			<div th:if="${mOk}" th:text="${mOk}" class="alert alert-success w-100"></div>
-			<div class="row books-row">
-				<div th:each="b : ${books}" class="col-6 col-md-4 col-xl-3 books-col">
-					<img th:src="${b.image != null ? b.image : '/images/projects/library/books_default.jpg'}" class="img-fluid d-block mx-auto" th:title="${b.title} + ' Image'">
-					<p th:text="${b.title}" class="text-center">Title</p>
+    	<hr />
+    	<h1 class="display-4 text-center pt-2 heading-h1">BOOKS</h1>
+    	<hr />
+    	<div th:if="${mOk}" th:text="${mOk}" class="alert alert-success w-100"></div>
+		<div th:each="b : ${books}" class="row shadow mb-5 py-4 book-list-row">
+			<div class="col-md-3 d-none d-sm-block list-image">
+				<img th:src="${b.image != null ? b.image : '/images/projects/library/books_default.jpg'}" class="img-fluid d-block mx-auto list-images" th:title="${b.title} + ' Image'">
+			</div>
+			<div class="col-md-9">
+				<div class="row">
+					<div class="col-12">
+						<h2 th:text="${b.title}">Title</h2>
+					</div>
+					<div class="col-12">
+						<h5 th:text="${b.author.name}">Author</h5>
+					</div>
+					<div class="col-6">
+						<h5 th:text="${b.genre.name}">Genre</h5>
+					</div>
+					<div class="col-6">
+						<h5 th:text="${b.pages} + ' Pages'">Pages</h5>
+					</div>
+					<div class="col-12">
+						<p th:text="${#strings.abbreviate(b.synopsis, 300)}">Synopsis</p>
+					</div>
 				</div>
 			</div>
-			<p class="text-center w-100"><a th:href="@{/projects/library}">LIBRARY</a> | <a th:href="@{/projects/library/books/new}">ADD BOOK</a></p>
+		</div>
+		<div class="navigation">
+			<h5 th:text="'Page '+${books.number+1}" class="w-100 text-center page-num">Page</h5>
+			<p class="text-center w-100"><a th:if="${books.hasPrevious}" th:href="@{'/projects/library/books/'+${books.number-1}}" class="btn my-btn mx-2 my-1">PREVIOUS</a><a th:href="@{/projects/library}" class="btn my-btn mx-2 my-1">LIBRARY</a><a th:href="@{/projects/library/books/new}" class="btn my-btn mx-2 my-1">ADD BOOK</a><a th:if="${books.hasNext}" th:href="@{'/projects/library/books/'+${books.number+1}}" class="btn my-btn mx-2">NEXT</a></p>
+			
 		</div>
     </div>
     

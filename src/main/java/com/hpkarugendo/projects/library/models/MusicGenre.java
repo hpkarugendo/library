@@ -13,7 +13,7 @@ public class MusicGenre {
 	@Id
 	@GeneratedValue
 	private int id;
-	@Column(length = 20)
+	@Column(length = 100)
 	private String name;
 	@OneToMany(mappedBy = "genre")
 	private List<Music> songs;

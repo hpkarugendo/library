@@ -14,7 +14,7 @@ public class MovieDirector {
 	@Id
 	@GeneratedValue
 	private int id;
-	@Column(length = 30)
+	@Column(length = 100)
 	private String name;
 	private char sex;
 	@ManyToOne

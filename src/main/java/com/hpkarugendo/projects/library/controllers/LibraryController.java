@@ -6,12 +6,15 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.hpkarugendo.projects.library.models.Book;
@@ -21,6 +24,7 @@ import com.hpkarugendo.projects.library.services.BookAuthorService;
 import com.hpkarugendo.projects.library.services.BookGenreService;
 import com.hpkarugendo.projects.library.services.BookService;
 import com.hpkarugendo.projects.library.services.CountryService;
+import com.hpkarugendo.projects.library.services.ImageService;
 import com.hpkarugendo.projects.library.services.MovieGenreService;
 import com.hpkarugendo.projects.library.services.MusicGenreService;
 
@@ -50,7 +54,7 @@ public class LibraryController {
 	//List All Books in chunks of 5
 	@GetMapping("projects/library/books/{no}")
 	public String bookLibrary(Model m, @PathVariable("no") final int no) {
-		m.addAttribute("books", bService.allPagedBooks(PageRequest.of(no, 5)));
+		m.addAttribute("books", bService.allPagedBooks(PageRequest.of(no, 4, Sort.by("title"))));
 		return "projects/library/book_library";
 	}
 	//Form to Add New Book
@@ -66,7 +70,12 @@ public class LibraryController {
 	}
 	//Save New Book
 	@PostMapping("projects/library/books/new")
-	public String bookPost(@ModelAttribute("bookObject") Book book, RedirectAttributes ra, HttpServletRequest sr) {
+	public String bookPost(@ModelAttribute("bookObject") Book book, @RequestParam("file") MultipartFile file, RedirectAttributes ra, HttpServletRequest sr) {
+		if(!file.isEmpty()) {
+			ImageService iService = new ImageService(file, "books");
+			book.setImage(iService.getUrl());
+		}
+		
 		if(!sr.getParameter("nName").toString().isEmpty()) {
 			String name = sr.getParameter("nName").toString();
 			char sex = sr.getParameter("nGender").toString().charAt(0);

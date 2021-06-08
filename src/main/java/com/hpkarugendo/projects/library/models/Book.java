@@ -11,9 +11,9 @@ public class Book {
 	@Id
 	@GeneratedValue
 	private int id;
-	@Column(length = 35)
+	@Column(length = 100)
 	private String image;
-	@Column(length = 50)
+	@Column(length = 100)
 	private String title;
 	@ManyToOne
 	private BookAuthor author;
